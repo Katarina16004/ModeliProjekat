@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rdf:RDF xmlns:cim="http://iec.ch/TC57/2010/CIM-schema-cim15#" 
+         xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+
+	<!-- BaseVoltage -->
+	<cim:BaseVoltage rdf:ID="BV1">
+		<cim:IdentifiedObject.name>Napon_20kV</cim:IdentifiedObject.name>
+		<cim:IdentifiedObject.mRID>mRID_BV1</cim:IdentifiedObject.mRID>
+		<cim:IdentifiedObject.aliasName>BV1_Alias</cim:IdentifiedObject.aliasName>
+	</cim:BaseVoltage>
+	
+	<cim:BaseVoltage rdf:ID="BV2">
+		<cim:IdentifiedObject.name>Napon_10kV</cim:IdentifiedObject.name>
+		<cim:IdentifiedObject.mRID>mRID_BV2</cim:IdentifiedObject.mRID>
+		<cim:IdentifiedObject.aliasName>BV2_Alias</cim:IdentifiedObject.aliasName>
+	</cim:BaseVoltage>
+
+	<!-- ConnectivityNodeContainer -->
+	<cim:ConnectivityNodeContainer rdf:ID="CNC1">
+		<cim:IdentifiedObject.name>Substation_Sever</cim:IdentifiedObject.name>
+		<cim:IdentifiedObject.mRID>mRID_CNC1</cim:IdentifiedObject.mRID>
+	</cim:ConnectivityNodeContainer>
+	
+	<cim:ConnectivityNodeContainer rdf:ID="CNC2">
+		<cim:IdentifiedObject.name>Substation_Jug</cim:IdentifiedObject.name>
+		<cim:IdentifiedObject.mRID>mRID_CNC2</cim:IdentifiedObject.mRID>
+	</cim:ConnectivityNodeContainer>
+
+	<!-- TopologicalNode -->
+	<cim:TopologicalNode rdf:ID="TN1">
+		<cim:IdentifiedObject.name>TopoloskiCvor_1</cim:IdentifiedObject.name>
+		<cim:IdentifiedObject.mRID>mRID_TN1</cim:IdentifiedObject.mRID>
+	</cim:TopologicalNode>
+	
+	<cim:TopologicalNode rdf:ID="TN2">
+		<cim:IdentifiedObject.name>TopoloskiCvor_2</cim:IdentifiedObject.name>
+		<cim:IdentifiedObject.mRID>mRID_TN2</cim:IdentifiedObject.mRID>
+	</cim:TopologicalNode>
+
+	<!-- ConnectivityNode -->
+	<cim:ConnectivityNode rdf:ID="CN1">
+		<cim:ConnectivityNode.ConnectivityNodeContainer rdf:resource="#CNC1"/>
+		<cim:ConnectivityNode.TopologicalNode rdf:resource="#TN1"/>
+		<cim:IdentifiedObject.name>Cvor_1</cim:IdentifiedObject.name>
+		<cim:IdentifiedObject.mRID>mRID_CN1</cim:IdentifiedObject.mRID>
+	</cim:ConnectivityNode>
+	
+	<cim:ConnectivityNode rdf:ID="CN2">
+		<cim:ConnectivityNode.ConnectivityNodeContainer rdf:resource="#CNC2"/>
+		<cim:ConnectivityNode.TopologicalNode rdf:resource="#TN2"/>
+		<cim:IdentifiedObject.name>Cvor_2</cim:IdentifiedObject.name>
+		<cim:IdentifiedObject.mRID>mRID_CN2</cim:IdentifiedObject.mRID>
+	</cim:ConnectivityNode>
+
+	<!-- Switch -->
+	<cim:Switch rdf:ID="SW1">
+		<cim:Switch.normalOpen>false</cim:Switch.normalOpen>
+		<cim:Switch.ratedCurrent>400.0</cim:Switch.ratedCurrent>
+		<cim:Switch.retained>true</cim:Switch.retained>
+		<cim:Switch.switchOnCount>5</cim:Switch.switchOnCount>
+		<cim:ConductingEquipment.BaseVoltage rdf:resource="#BV1"/>
+		<cim:Equipment.aggregate>false</cim:Equipment.aggregate>
+		<cim:Equipment.normallyInService>true</cim:Equipment.normallyInService>
+		<cim:IdentifiedObject.name>Prekidac_A1</cim:IdentifiedObject.name>
+		<cim:IdentifiedObject.mRID>mRID_SW1</cim:IdentifiedObject.mRID>
+	</cim:Switch>
+	
+	<cim:Switch rdf:ID="SW2">
+		<cim:Switch.normalOpen>true</cim:Switch.normalOpen>
+		<cim:Switch.ratedCurrent>630.0</cim:Switch.ratedCurrent>
+		<cim:Switch.retained>false</cim:Switch.retained>
+		<cim:Switch.switchOnCount>2</cim:Switch.switchOnCount>
+		<cim:ConductingEquipment.BaseVoltage rdf:resource="#BV2"/>
+		<cim:Equipment.aggregate>false</cim:Equipment.aggregate>
+		<cim:Equipment.normallyInService>true</cim:Equipment.normallyInService>
+		<cim:IdentifiedObject.name>Prekidac_A2</cim:IdentifiedObject.name>
+		<cim:IdentifiedObject.mRID>mRID_SW2</cim:IdentifiedObject.mRID>
+	</cim:Switch>
+
+	<!-- Terminal -->
+	<cim:Terminal rdf:ID="T1">
+		<cim:Terminal.ConductingEquipment rdf:resource="#SW1"/>
+		<cim:Terminal.ConnectivityNode rdf:resource="#CN1"/>
+		<cim:IdentifiedObject.name>Terminal_1</cim:IdentifiedObject.name>
+		<cim:IdentifiedObject.mRID>mRID_T1</cim:IdentifiedObject.mRID>
+	</cim:Terminal>
+	
+	<cim:Terminal rdf:ID="T2">
+		<cim:Terminal.ConductingEquipment rdf:resource="#SW2"/>
+		<cim:Terminal.ConnectivityNode rdf:resource="#CN2"/>
+		<cim:IdentifiedObject.name>Terminal_2</cim:IdentifiedObject.name>
+		<cim:IdentifiedObject.mRID>mRID_T2</cim:IdentifiedObject.mRID>
+	</cim:Terminal>
+
+</rdf:RDF>
